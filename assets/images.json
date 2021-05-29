@@ -1,0 +1,10 @@
+{
+    "logo" : "https://snopchaat.s3.eu-west-3.amazonaws.com/logo.png",
+    "friends" : "https://snopchaat.s3.eu-west-3.amazonaws.com/add-friend.png",
+    "trash" : "https://snopchaat.s3.eu-west-3.amazonaws.com/trash-10-xxl.png",
+    "logout" : "https://snopchaat.s3.eu-west-3.amazonaws.com/se-deconnecter.png",
+    "user" : "https://snopchaat.s3.eu-west-3.amazonaws.com/utilisateur-de-profil.png",
+    "search" : "https://snopchaat.s3.eu-west-3.amazonaws.com/searching-magnifying-glass.png",
+    "write" : "https://snopchaat.s3.eu-west-3.amazonaws.com/write.png",
+    "qrcode" : "https://snopchaat.s3.eu-west-3.amazonaws.com/a-guide-to-qr-codes-and-how-to-scan-qr-codes-2.png"
+}
