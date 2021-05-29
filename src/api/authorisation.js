@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export async function login(username, password, bool) {
   try {
-    const response = await axios.post(`http://localhost:8080/login`, {
+    const response = await axios.post(`https://snoopchat.herokuapp.com/login`, {
       username,
       password,
     });
@@ -25,13 +25,16 @@ export async function registerUser(
   password
 ) {
   try {
-    const response = await axios.post(`http://localhost:8080/register`, {
-      firstName,
-      lastName,
-      pseudo,
-      eMail,
-      password,
-    });
+    const response = await axios.post(
+      `https://snoopchat.herokuapp.com/register`,
+      {
+        firstName,
+        lastName,
+        pseudo,
+        eMail,
+        password,
+      }
+    );
     return response;
   } catch (error) {
     console.log(error);

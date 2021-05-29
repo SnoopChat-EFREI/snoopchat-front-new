@@ -22,7 +22,6 @@ export default function Connection() {
     if (token) {
       console.log(await verifyToken(token));
       if (await verifyToken(token)) {
-        console.log("okkkk");
         setAuth(true);
         setToken(token);
       } else {

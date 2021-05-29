@@ -5,6 +5,7 @@ import MapView, { Marker } from "react-native-maps";
 import { getMyPosition } from "../api/geolocalisation";
 
 import styles from "../../assets/styles/styles";
+import { usermarker } from "../../assets/images.json";
 
 export default function Map() {
   const [pos, setPos] = React.useState("");
@@ -23,10 +24,18 @@ export default function Map() {
     console.log(coordinate);
     return (
       <View style={styles.containerMap}>
-        <MapView style={styles.map}>
+        <MapView
+          style={styles.map}
+          region={{
+            latitude: coordinate.latitude,
+            longitude: coordinate.location,
+            latitudeDelta: 0.09,
+            longitudeDelta: 0.035,
+          }}
+        >
           <Marker
             title="Moi"
-            pinColor="#000000"
+            image={{ uri: usermarker }}
             coordinate={{
               latitude: coordinate.latitude,
               longitude: coordinate.location,
