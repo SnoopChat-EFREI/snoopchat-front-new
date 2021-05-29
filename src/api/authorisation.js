@@ -71,8 +71,8 @@ export async function addFriend(pseudo) {
       }
     );
 
-    const { addFriendResponse } = response.status;
-
+    const addFriendResponse  = response.status;
+    console.log(addFriendResponse);
     return addFriendResponse;
   } catch (error) {
     console.log(error);

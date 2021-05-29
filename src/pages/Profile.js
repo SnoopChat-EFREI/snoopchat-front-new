@@ -26,17 +26,8 @@ import PseudoContext from "../utils/PseudoContext"
 export default function Profile() {
   const navigation = useNavigation();
   const [pseudo, setPseudo] = React.useState("");
-<<<<<<< HEAD
-=======
-  const [prenom, setPrenom] = React.useState("");
-  const [nom, setNom] = React.useState("");
-  const [mail, setMail] = React.useState("");
-  const [pwd, setPwd] = React.useState("");
   const title = "Profile";
   const { setAuth } = useContext(AuthContext);
->>>>>>> 5951fe6bc89314136fc12f1674e8fd579babaf31
-
-  const title  = "Profile"
 
   const contextValue = {
     pseudo,

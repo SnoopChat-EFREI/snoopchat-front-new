@@ -31,11 +31,7 @@ const container = () => {
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="Friends" component={Friends} />
       <Drawer.Screen name="FriendScan" component={FriendScan} />
-<<<<<<< HEAD
       <Drawer.Screen name="FriendList" component={FriendList} />
-      <Drawer.Screen name="connection" component={Connection} />
-=======
->>>>>>> 5951fe6bc89314136fc12f1674e8fd579babaf31
     </Drawer.Navigator>
   );
 };
