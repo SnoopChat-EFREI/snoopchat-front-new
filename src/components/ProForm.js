@@ -10,24 +10,28 @@ import { registerUser, fetchOneUser } from "../api/authorisation";
 
 import styles from "../../assets/styles/styles";
 
+import PseudoContext from "../utils/PseudoContext";
+
 export default function Proform() {
-  const [pseudo, setPseudo] = React.useState("");
+  const [pseudo, setUsername] = React.useState("");
   const [prenom, setPrenom] = React.useState("");
   const [nom, setNom] = React.useState("");
   const [mail, setMail] = React.useState("");
   const [pwd, setPwd] = React.useState("");
 
+  const {setPseudo} = React.useContext(PseudoContext)
+
   async function getOneUser() {
-    await Items(await fetchOneUser());
+    await Items(await fetchOneUser());   
   }
 
   async function Items(item) {
     const { eMail, firstName, lastName, pseudo } = item;
-    console.log(item);
-    setPseudo(pseudo);
-    setPrenom(firstName);
-    setNom(lastName);
-    setMail(eMail);
+    setPseudo(pseudo)
+    setUsername(pseudo)
+    setPrenom(firstName)
+    setNom(lastName)
+    setMail(eMail)
   }
 
   React.useEffect(() => {

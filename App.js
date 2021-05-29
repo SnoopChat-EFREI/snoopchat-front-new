@@ -11,6 +11,7 @@ import Map from "./src/pages/Map";
 import Profile from "./src/pages/Profile";
 import Friends from "./src/pages/Friends";
 import FriendScan from "./src/pages/FriendScan";
+import FriendList from "./src/pages/FriendList";
 
 //:: Context import
 import AuthContext from "./src/utils/connection.context";
@@ -27,6 +28,7 @@ const container = () => {
       <Drawer.Screen name="Profile" component={Profile} />
       <Drawer.Screen name="Friends" component={Friends} />
       <Drawer.Screen name="FriendScan" component={FriendScan} />
+      <Drawer.Screen name="FriendList" component={FriendList} />
     </Drawer.Navigator>
   );
 };
