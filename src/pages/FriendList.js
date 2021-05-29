@@ -35,7 +35,7 @@ const FriendList = (props) => {
         <Text>FriendsList</Text>
         {friends.map((item,index)=>(
           <View style={styles.item}>
-            <p>{item.pseudo}</p>
+            <Text>{item.pseudo}</Text>
           </View>
         ))}
     </View>

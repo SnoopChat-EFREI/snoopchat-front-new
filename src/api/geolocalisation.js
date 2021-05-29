@@ -20,7 +20,7 @@ export async function sendPosition(location) {
       }
     );
 
-    console.log(response);
+    // console.log(response);
 
     return response.status;
   } catch (error) {

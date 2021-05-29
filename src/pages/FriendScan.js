@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button, Alert } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 
+import {addFriend} from "../api/authorisation"
+
 import Nav from "../components/Nav";
 
 export default function FriendScan() {
@@ -17,6 +19,7 @@ export default function FriendScan() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
+    addFriend(data)
     Alert.alert("Ami ajouté !", `Requête enoyé au snoopchater ${data} !`);
   };
 

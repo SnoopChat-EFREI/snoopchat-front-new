@@ -57,3 +57,24 @@ export async function fetchOneUser() {
     console.log(error);
   }
 }
+
+export async function addFriend(pseudo) {
+  try {
+    const token = await AsyncStorage.getItem("@token");
+
+    const response = await axios.get(
+      `https://snoopchat.herokuapp.com/api/friends/addfriend/${pseudo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+    const { addFriendResponse } = response.status;
+
+    return addFriendResponse;
+  } catch (error) {
+    console.log(error);
+  }
+}

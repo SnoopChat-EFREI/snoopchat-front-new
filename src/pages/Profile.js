@@ -13,7 +13,10 @@ import QRCode from "react-native-qrcode-svg";
 //:: Components imports
 import Nav from "../components/Nav";
 import ProForm from "../components/ProForm";
+
+//:: utils imports
 import { destroyToken } from "../utils/token.logic";
+import AuthContext from "../utils/connection.context";
 
 import { logo, friends, logout, trash } from "../../assets/images.json";
 import styles from "../../assets/styles/styles";
@@ -23,6 +26,15 @@ import PseudoContext from "../utils/PseudoContext"
 export default function Profile() {
   const navigation = useNavigation();
   const [pseudo, setPseudo] = React.useState("");
+<<<<<<< HEAD
+=======
+  const [prenom, setPrenom] = React.useState("");
+  const [nom, setNom] = React.useState("");
+  const [mail, setMail] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+  const title = "Profile";
+  const { setAuth } = useContext(AuthContext);
+>>>>>>> 5951fe6bc89314136fc12f1674e8fd579babaf31
 
   const title  = "Profile"
 
@@ -59,7 +71,7 @@ export default function Profile() {
           style={styles.button}
           onPress={() => {
             if (destroyToken()) {
-              navigation.navigate("connection");
+              setAuth(false);
             }
           }}
         >
