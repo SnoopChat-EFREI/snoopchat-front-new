@@ -16,7 +16,10 @@ import FriendList from "./src/pages/FriendList";
 //:: Context import
 import AuthContext from "./src/utils/connection.context";
 import TokenContext from "./src/utils/token.context";
-import { useContext } from "react/cjs/react.development";
+import {
+  geolocalisationPermissions,
+  geolocalisation,
+} from "./src/utils/geolocalisation";
 
 //:: Navigation components init
 const Tab = createBottomTabNavigator();
@@ -29,6 +32,7 @@ const container = () => {
       <Drawer.Screen name="Friends" component={Friends} />
       <Drawer.Screen name="FriendScan" component={FriendScan} />
       <Drawer.Screen name="FriendList" component={FriendList} />
+      <Drawer.Screen name="connection" component={Connection} />
     </Drawer.Navigator>
   );
 };
@@ -36,6 +40,19 @@ const container = () => {
 export default function App() {
   const [authentication, setAuth] = React.useState(false);
   const [token, setToken] = React.useState(null);
+  const [loc, setLoc] = useState(false);
+
+  async function setLocPermissions() {
+    setLoc(await geolocalisationPermissions());
+  }
+
+  useEffect(() => {
+    setLocPermissions();
+  }, [authentication]);
+
+  if (loc) {
+    geolocalisation();
+  }
 
   //:: Context value init
   const AuthContextValue = {

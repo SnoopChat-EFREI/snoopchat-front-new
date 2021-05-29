@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Text,
   View,
@@ -13,6 +13,7 @@ import QRCode from "react-native-qrcode-svg";
 //:: Components imports
 import Nav from "../components/Nav";
 import ProForm from "../components/ProForm";
+import { destroyToken } from "../utils/token.logic";
 
 import { logo, friends, logout, trash } from "../../assets/images.json";
 import styles from "../../assets/styles/styles";
@@ -54,8 +55,18 @@ export default function Profile() {
           {/* <Image source={{uri: users}} style={{ position: 'absolute', width: 25, height: 25, left : 30 }} /> */}
           <Text style={styles.H2}>Liste des Amis</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Image source={{uri: logout}} style={{ position: 'absolute', width: 25, height: 25, left : 30 }} />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            if (destroyToken()) {
+              navigation.navigate("connection");
+            }
+          }}
+        >
+          <Image
+            source={{ uri: logout }}
+            style={{ position: "absolute", width: 25, height: 25, left: 30 }}
+          />
           <Text style={styles.H2ROUGE}>Déconnexion</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
