@@ -13,7 +13,10 @@ import QRCode from "react-native-qrcode-svg";
 //:: Components imports
 import Nav from "../components/Nav";
 import ProForm from "../components/ProForm";
+
+//:: utils imports
 import { destroyToken } from "../utils/token.logic";
+import AuthContext from "../utils/connection.context";
 
 import { logo, friends, logout, trash } from "../../assets/images.json";
 import styles from "../../assets/styles/styles";
@@ -26,6 +29,7 @@ export default function Profile() {
   const [mail, setMail] = React.useState("");
   const [pwd, setPwd] = React.useState("");
   const title = "Profile";
+  const { setAuth } = useContext(AuthContext);
 
   return (
     <View style={styles.container2}>
@@ -55,7 +59,7 @@ export default function Profile() {
           style={styles.button}
           onPress={() => {
             if (destroyToken()) {
-              navigation.navigate("connection");
+              setAuth(false);
             }
           }}
         >
