@@ -2,6 +2,13 @@ import * as React from "react";
 import { StyleSheet, Dimensions } from "react-native";
 
 const styles = StyleSheet.create({
+  fail: {
+    backgroundColor: "#CC4114",
+    color: "white",
+    padding: 20,
+    margin: 20,
+    textAlign: "center",
+  },
   container: {
     backgroundColor: "#00B2FF",
     flex: 1,
@@ -20,8 +27,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
-    top: 0,
-    width: Dimensions.get("window").width,
+    borderRadius: 15,
+    top: 30,
+    left: 10,
+    right: 10,
     height: "10%",
   },
   nav1: {
@@ -45,6 +54,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   input: {
+    borderRadius: 5,
     width: 350,
     height: 55,
     backgroundColor: "#FFF",
@@ -66,12 +76,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   H2: {
-    color: "black",
+    color: "#4a4a4a",
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",
   },
   H2ROUGE: {
+    color: "#D98880",
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  H2alert: {
     color: "#FF0000",
     textAlign: "center",
     fontSize: 20,
@@ -80,10 +96,19 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#00B2FF",
+    backgroundColor: "#3498DB",
     flexDirection: "row",
     padding: 20,
-    marginTop: 20,
+    marginTop: 5,
+    borderColor: "white",
+    borderWidth: 2,
+    borderRadius: 20,
+  },
+  conn: {
+    textAlign: "center",
+    color: "#1B4F72",
+    fontSize: 20,
+    fontWeight: "bold",
   },
   containerMap: {
     ...StyleSheet.absoluteFillObject,
@@ -101,7 +126,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: "#f9c2ff",
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -111,6 +136,30 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     alignSelf: "center",
+  },
+  bottomNav: {
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    paddingBottom: 18,
+    backgroundColor: "#FFFFFF",
+    height: 50,
+  },
+  connectPage: {
+    marginTop: "20%",
+    alignItems: "center",
+  },
+  buttonConn: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#71E8F0",
+    flexDirection: "row",
+    padding: 15,
+    marginTop: "4%",
+    width: "80%",
+    borderColor: "#1AC6F0",
+    borderWidth: 2,
+    borderRadius: 20,
   },
 });
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -19,6 +20,7 @@ import {
   geolocalisationPermissions,
   geolocalisation,
 } from "./src/utils/geolocalisation";
+import styles from "./assets/styles/styles";
 
 //:: Navigation components init
 const Tab = createBottomTabNavigator();
@@ -67,8 +69,11 @@ export default function App() {
       <NavigationContainer>
         <TokenContext.Provider value={TokenContextValue}>
           <AuthContext.Provider value={AuthContextValue}>
-            <Tab.Navigator initialRouteName={"Chat"}>
-              <Tab.Screen name="Chat" component={container} />
+            <Tab.Navigator
+              tabBarOptions={{ style: styles.bottomNav }}
+              initialRouteName={"Home"}
+            >
+              <Tab.Screen name="Home" component={container} />
               <Tab.Screen name="Map" component={Map} />
             </Tab.Navigator>
           </AuthContext.Provider>
@@ -79,9 +84,9 @@ export default function App() {
     return (
       <NavigationContainer>
         <AuthContext.Provider value={AuthContextValue}>
-          <Tab.Navigator>
-            <Tab.Screen name="connection" component={Connection} />
-            <Tab.Screen name="register" component={Register} />
+          <Tab.Navigator tabBarOptions={{ style: { display: "none" } }}>
+            <Tab.Screen name="Login" component={Connection} />
+            <Tab.Screen name="Register" component={Register} />
           </Tab.Navigator>
         </AuthContext.Provider>
       </NavigationContainer>

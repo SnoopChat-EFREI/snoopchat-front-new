@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 //:: Import CSS
 import styles from "../../assets/styles/styles";
@@ -15,10 +16,13 @@ export default function Conform() {
   const [pseudo, setPseudo] = useState("");
   const [pwd, setPwd] = useState("");
   const [handleClick, setHandler] = useState(false);
+  const [failure, setFailure] = useState(false);
+
+  const navigation = useNavigation();
 
   const { setAuth } = useContext(AuthContext);
   const { setToken } = useContext(TokenContext);
-
+  console.log(failure);
   return (
     <View>
       <TextInput
@@ -35,26 +39,43 @@ export default function Conform() {
         value={pwd}
       />
       <Text style={styles.link}>Mot de passe oublié ?</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={async () => {
-          setHandler(true);
-          const res = await login(pseudo, pwd);
-          if (res) {
-            setAuth(true);
-            setToken(res);
-          } else {
-            setAuth(false);
-            setToken(null);
-            setHandler(false);
-          }
-        }}
-      >
-        <Text style={styles.H2}>
-          {" "}
-          {!handleClick ? "Se connecter" : "Connexion en cours..."}
-        </Text>
-      </TouchableOpacity>
+      {failure ? (
+        <Text style={styles.fail}>Il y a un problème avec votre login</Text>
+      ) : (
+        <Text></Text>
+      )}
+      <View style={styles.connectPage}>
+        <TouchableOpacity
+          style={styles.buttonConn}
+          onPress={async () => {
+            setHandler(true);
+            const res = await login(pseudo, pwd);
+            if (res) {
+              setAuth(true);
+              setToken(res);
+            } else {
+              setAuth(false);
+              setToken(null);
+              setFailure(true);
+              setHandler(false);
+            }
+          }}
+        >
+          <View>
+            <Text style={styles.conn}>
+              {!handleClick ? "Se connecter" : "Connexion en cours..."}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonConn}
+          onPress={() => navigation.navigate("Register")}
+        >
+          <View>
+            <Text style={styles.conn}>S'inscrire</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

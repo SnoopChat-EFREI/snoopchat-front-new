@@ -23,11 +23,6 @@ import styles from "../../assets/styles/styles";
 
 export default function Profile() {
   const navigation = useNavigation();
-  const [pseudo, setPseudo] = React.useState("");
-  const [prenom, setPrenom] = React.useState("");
-  const [nom, setNom] = React.useState("");
-  const [mail, setMail] = React.useState("");
-  const [pwd, setPwd] = React.useState("");
   const title = "Profile";
   const { setAuth } = useContext(AuthContext);
 
@@ -43,7 +38,7 @@ export default function Profile() {
       <Text></Text>
       <Text style={styles.H2}>GuiguiBoy</Text>
       <Text></Text>
-      <ScrollView>
+      <ScrollView style={{ marginBottom: 60 }}>
         <ProForm />
         <TouchableOpacity
           style={styles.button}
@@ -67,14 +62,14 @@ export default function Profile() {
             source={{ uri: logout }}
             style={{ position: "absolute", width: 25, height: 25, left: 30 }}
           />
-          <Text style={styles.H2ROUGE}>Déconnexion</Text>
+          <Text style={styles.H2}>Déconnexion</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Image
             source={{ uri: trash }}
             style={{ position: "absolute", width: 25, height: 25, left: 30 }}
           />
-          <Text style={styles.H2ROUGE}>Supprimer le compte</Text>
+          <Text style={styles.H2alert}>Supprimer le compte</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>

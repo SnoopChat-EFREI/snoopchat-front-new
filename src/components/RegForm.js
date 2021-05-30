@@ -46,15 +46,16 @@ export default function RegForm() {
         onChangeText={(value) => setPwd(value)}
         value={pwd}
       />
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          registerUser(firstName, lastName, pseudo, mail, pwd);
-        }}
-      >
-        <Text style={styles.H2}>Inscription</Text>
-      </TouchableOpacity>
+      <View style={styles.connectPage}>
+        <TouchableOpacity
+          style={styles.buttonConn}
+          onPress={() => {
+            registerUser(firstName, lastName, pseudo, mail, pwd);
+          }}
+        >
+          <Text style={styles.conn}>Valider</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

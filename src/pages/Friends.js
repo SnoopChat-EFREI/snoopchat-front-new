@@ -29,7 +29,7 @@ export default function Friends() {
         value={find}
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.buttonConn}
         onPress={() => navigation.navigate("FriendScan")}
       >
         <Image

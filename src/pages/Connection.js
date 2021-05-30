@@ -14,7 +14,7 @@ import styles from "../../assets/styles/styles";
 import { logo } from "../../assets/images.json";
 
 export default function Connection() {
-  const { authentication, setAuth } = useContext(AuthContext);
+  const { setAuth } = useContext(AuthContext);
   const { setToken } = useContext(TokenContext);
 
   const fetchToken = async () => {
