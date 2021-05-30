@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button, Alert } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Alert,
+  TouchableHighlight,
+  ActivityIndicator,
+} from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 
-import {addFriend} from "../api/authorisation"
+import { addFriend } from "../api/authorisation";
+
+import friendStyles from "../../assets/styles/friends";
 
 import Nav from "../components/Nav";
 
 export default function FriendScan() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [statut, setStatut] = useState();
+  const [statut, setStatut] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -20,14 +29,16 @@ export default function FriendScan() {
 
   const handleBarCodeScanned = async ({ type, data }) => {
     await setScanned(true);
-    await setStatut(await addFriend(data))
-    if(await statut === 201){
+    await setStatut(await addFriend(data));
+    if ((await statut) === 201) {
       Alert.alert("Ami ajouté !", `Snoopchater "${data}" ajouté !`);
-    }else{
-      Alert.alert("Impossible", `Impossible d'ajouter le snoopchater "${data}" !`);
+    } else {
+      Alert.alert(
+        "Impossible",
+        `Impossible d'ajouter le snoopchater "${data}" !`
+      );
     }
   };
-
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
   }
@@ -35,51 +46,23 @@ export default function FriendScan() {
     return <Text>No access to camera</Text>;
   }
   return (
-    <View style={styles.container}>
+    <View style={friendStyles.container}>
       <Nav title={"Ajouter des amis"} />
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
-      <View
-        style={{
-          position: "absolute",
-          bottom: 50,
-          width: "100%",
-          backgroundColor: "red",
+      <View style={friendStyles.box}>
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={friendStyles.photo}
+        />
+      </View>
+      <TouchableHighlight
+        style={friendStyles.btn}
+        title={"Tap to Scan Again"}
+        onPress={() => {
+          setScanned(false);
         }}
       >
-        {scanned && (
-          <Button
-            title={"Tap to Scan Again"}
-            onPress={() => setScanned(false)}
-          />
-        )}
-      </View>
+        <Text style={friendStyles.buttonText}>SCANNER</Text>
+      </TouchableHighlight>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  camera: {
-    flex: 1,
-  },
-  buttonContainer: {
-    flex: 1,
-    backgroundColor: "transparent",
-    flexDirection: "row",
-    margin: 20,
-  },
-  button: {
-    flex: 0.1,
-    alignSelf: "flex-end",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 18,
-    color: "white",
-  },
-});

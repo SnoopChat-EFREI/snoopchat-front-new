@@ -2,12 +2,11 @@ import * as React from "react";
 import { StyleSheet, Dimensions } from "react-native";
 
 const styles = StyleSheet.create({
-  fail: {
-    backgroundColor: "#CC4114",
-    color: "white",
-    padding: 20,
-    margin: 20,
-    textAlign: "center",
+  homeContainer: {
+    backgroundColor: "white",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     backgroundColor: "#00B2FF",
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 15,
-    top: 30,
+    top: 50,
     left: 10,
     right: 10,
     height: "10%",
@@ -104,12 +103,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 20,
   },
-  conn: {
-    textAlign: "center",
-    color: "#1B4F72",
-    fontSize: 20,
-    fontWeight: "bold",
-  },
   containerMap: {
     ...StyleSheet.absoluteFillObject,
     width: Dimensions.get("window").width,
@@ -144,22 +137,6 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
     backgroundColor: "#FFFFFF",
     height: 50,
-  },
-  connectPage: {
-    marginTop: "20%",
-    alignItems: "center",
-  },
-  buttonConn: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#71E8F0",
-    flexDirection: "row",
-    padding: 15,
-    marginTop: "4%",
-    width: "80%",
-    borderColor: "#1AC6F0",
-    borderWidth: 2,
-    borderRadius: 20,
   },
   pingMap: {
     borderColor: "red",

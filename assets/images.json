@@ -8,5 +8,9 @@
     "write" : "https://snopchaat.s3.eu-west-3.amazonaws.com/write.png",
     "qrcode" : "https://snopchaat.s3.eu-west-3.amazonaws.com/a-guide-to-qr-codes-and-how-to-scan-qr-codes-2.png",
     "usermarker" : "https://snopchaat.s3.eu-west-3.amazonaws.com/map-marker.png",
-    "friendmarker" : "https://snopchaat.s3.eu-west-3.amazonaws.com/pin.png"
+    "friendmarker" : "https://snopchaat.s3.eu-west-3.amazonaws.com/pin.png",
+    "home": "https://snopchaat.s3.eu-west-3.amazonaws.com/accueil.png",
+    "navmarker" : "https://snopchaat.s3.eu-west-3.amazonaws.com/location-pin.png",
+    "friendlist" : "https://snopchaat.s3.eu-west-3.amazonaws.com/texte-de-la-liste.png",
+    "backarrow" : "https://snopchaat.s3.eu-west-3.amazonaws.com/left-arrow.png"
 }

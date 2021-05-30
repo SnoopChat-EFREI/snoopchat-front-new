@@ -5,7 +5,7 @@ import styles from "../../assets/styles/styles";
 
 export default function Home() {
   return (
-    <View style={styles.container}>
+    <View style={styles.homeContainer}>
       <NavBar />
       <Text>Aucune discussion en cours</Text>
     </View>

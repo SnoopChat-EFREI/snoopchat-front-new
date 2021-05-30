@@ -1,9 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 //:: Import CSS
-import styles from "../../assets/styles/styles";
+import styles from "../../assets/styles/auth.page";
 
 //:: utils import
 import AuthContext from "../utils/connection.context";
@@ -22,60 +29,53 @@ export default function Conform() {
 
   const { setAuth } = useContext(AuthContext);
   const { setToken } = useContext(TokenContext);
-  console.log(failure);
+
+  const send = async () => {
+    setHandler(true);
+    const res = await login(pseudo, pwd);
+    if (res) {
+      setAuth(true);
+      setToken(res);
+    } else {
+      setAuth(false);
+      setToken(null);
+      setFailure(true);
+      setHandler(false);
+    }
+  };
+
   return (
-    <View>
-      <TextInput
-        style={styles.input}
-        placeholder="Pseudo"
-        onChangeText={(value) => setPseudo(value)}
-        value={pseudo}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de passe"
-        onChangeText={(value) => setPwd(value)}
-        secureTextEntry={true}
-        value={pwd}
-      />
-      <Text style={styles.link}>Mot de passe oublié ?</Text>
+    <View style={styles.connectionContainer}>
+      <View style={styles.connectionInput}>
+        <TextInput
+          style={styles.input}
+          placeholder="Pseudo"
+          onChangeText={(value) => setPseudo(value)}
+          value={pseudo}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Mot de passe"
+          onChangeText={(value) => setPwd(value)}
+          secureTextEntry={true}
+          value={pwd}
+        />
+        <Text style={styles.link}>Mot de passe oublié ?</Text>
+      </View>
+      <View style={styles.connectionButton}>
+        <TouchableOpacity style={styles.button} onPress={() => send()}>
+          {!handleClick ? (
+            <Text style={styles.buttonText}>SE CONNECTER</Text>
+          ) : (
+            <ActivityIndicator size="small" color="white" />
+          )}
+        </TouchableOpacity>
+      </View>
       {failure ? (
-        <Text style={styles.fail}>Il y a un problème avec votre login</Text>
+        <Text style={styles.fail}>Pseudo/Mot de passe invalide</Text>
       ) : (
         <Text></Text>
       )}
-      <View style={styles.connectPage}>
-        <TouchableOpacity
-          style={styles.buttonConn}
-          onPress={async () => {
-            setHandler(true);
-            const res = await login(pseudo, pwd);
-            if (res) {
-              setAuth(true);
-              setToken(res);
-            } else {
-              setAuth(false);
-              setToken(null);
-              setFailure(true);
-              setHandler(false);
-            }
-          }}
-        >
-          <View>
-            <Text style={styles.conn}>
-              {!handleClick ? "Se connecter" : "Connexion en cours..."}
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.buttonConn}
-          onPress={() => navigation.navigate("Register")}
-        >
-          <View>
-            <Text style={styles.conn}>S'inscrire</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }

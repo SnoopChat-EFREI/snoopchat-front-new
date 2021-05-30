@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -22,7 +22,11 @@ import {
   geolocalisationPermissions,
   geolocalisation,
 } from "./src/utils/geolocalisation";
-import styles from "./assets/styles/styles";
+
+//:: CSS Imports
+import { home, navmarker } from "./assets/images.json";
+import navStyles from "./assets/styles/app.nav";
+import connectionStyles from "./assets/styles/auth.page";
 
 //:: Navigation components init
 const Tab = createBottomTabNavigator();
@@ -74,11 +78,46 @@ export default function App() {
         <TokenContext.Provider value={TokenContextValue}>
           <AuthContext.Provider value={AuthContextValue}>
             <Tab.Navigator
-              tabBarOptions={{ style: styles.bottomNav }}
+              tabBarOptions={{
+                showLabel: false,
+                style: connectionStyles.connectionNav,
+              }}
               initialRouteName={"Home"}
             >
-              <Tab.Screen name="Home" component={container} />
-              <Tab.Screen name="Map" component={Map} />
+              <Tab.Screen
+                name="Home"
+                component={container}
+                options={{
+                  tabBarIcon: ({ focused }) => (
+                    <View
+                      style={focused ? navStyles.navFocusBtn : navStyles.navBtn}
+                    >
+                      <Image
+                        style={{ width: 25, height: 25 }}
+                        resizeMode="contain"
+                        source={{ uri: home }}
+                      />
+                    </View>
+                  ),
+                }}
+              />
+              <Tab.Screen
+                name="Map"
+                component={Map}
+                options={{
+                  tabBarIcon: ({ focused }) => (
+                    <View
+                      style={focused ? navStyles.navFocusBtn : navStyles.navBtn}
+                    >
+                      <Image
+                        style={{ width: 25, height: 25 }}
+                        resizeMode="contain"
+                        source={{ uri: navmarker }}
+                      />
+                    </View>
+                  ),
+                }}
+              />
             </Tab.Navigator>
           </AuthContext.Provider>
         </TokenContext.Provider>
@@ -88,9 +127,34 @@ export default function App() {
     return (
       <NavigationContainer>
         <AuthContext.Provider value={AuthContextValue}>
-          <Tab.Navigator tabBarOptions={{ style: { display: "none" } }}>
-            <Tab.Screen name="Login" component={Connection} />
-            <Tab.Screen name="Register" component={Register} />
+          <Tab.Navigator
+            tabBarOptions={{
+              showLabel: false,
+              style: connectionStyles.connectionNav,
+            }}
+          >
+            <Tab.Screen
+              name="Connexion"
+              component={Connection}
+              options={{
+                tabBarIcon: () => (
+                  <View style={connectionStyles.connectionBox}>
+                    <Text style={connectionStyles.navInput}>Connexion</Text>
+                  </View>
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Inscription"
+              component={Register}
+              options={{
+                tabBarIcon: () => (
+                  <View style={connectionStyles.connectionBox}>
+                    <Text style={connectionStyles.navInput}>Inscription</Text>
+                  </View>
+                ),
+              }}
+            />
           </Tab.Navigator>
         </AuthContext.Provider>
       </NavigationContainer>

@@ -1,12 +1,5 @@
 import React, { useContext } from "react";
-import {
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import QRCode from "react-native-qrcode-svg";
 
@@ -18,77 +11,117 @@ import ProForm from "../components/ProForm";
 import { destroyToken } from "../utils/token.logic";
 import AuthContext from "../utils/connection.context";
 
-import { logo, friends, logout, trash } from "../../assets/images.json";
+//:: CSS imports
+import {
+  logo,
+  friends,
+  logout,
+  trash,
+  friendlist,
+} from "../../assets/images.json";
 import styles from "../../assets/styles/styles";
+import profileStyles from "../../assets/styles/profile";
 
 import PseudoContext from "../utils/PseudoContext";
 
 export default function Profile() {
-  const navigation = useNavigation();
   const [pseudo, setPseudo] = React.useState("");
+  const [changeProfile, setChangePro] = React.useState(false);
+
+  const navigation = useNavigation();
   const title = "Profile";
   const { setAuth } = useContext(AuthContext);
-
   const contextValue = {
     pseudo,
     setPseudo,
   };
-  console.log(pseudo);
   return (
-    <View style={styles.container2}>
+    <View style={profileStyles.profileContainer}>
       <Nav title={title} />
-      <QRCode
-        value={pseudo ? pseudo : "loading..."}
-        logo={{ uri: logo }}
-        logoSize={20}
-        logoBackgroundColor="#00B2FF"
-      />
-      <Text></Text>
-      <Text style={styles.H2}>{pseudo}</Text>
-      <Text></Text>
-      <ScrollView>
-        <PseudoContext.Provider value={contextValue}>
-          <ProForm />
-        </PseudoContext.Provider>
+      <View style={profileStyles.profileBox}>
+        <QRCode
+          value={pseudo ? pseudo : "loading..."}
+          logo={{ uri: logo }}
+          logoSize={20}
+          logoBackgroundColor="#00B2FF"
+        />
+        <Text style={styles.H2}>{pseudo}</Text>
+      </View>
+      <View>
         <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("Friends")}
+          style={profileStyles.button}
+          onPress={() => setChangePro(!changeProfile)}
         >
-          <Image
-            source={{ uri: friends }}
-            style={{ position: "absolute", width: 25, height: 25, left: 30 }}
-          />
-          <Text style={styles.H2}>Ajouter des amis</Text>
+          <Text style={profileStyles.textButton}>
+            Modifier mes informations
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("FriendList")}
-        >
-          {/* <Image source={{uri: users}} style={{ position: 'absolute', width: 25, height: 25, left : 30 }} /> */}
-          <Text style={styles.H2}>Liste des Amis</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            if (destroyToken()) {
-              setAuth(false);
-            }
-          }}
-        >
-          <Image
-            source={{ uri: logout }}
-            style={{ position: "absolute", width: 25, height: 25, left: 30 }}
-          />
-          <Text style={styles.H2}>Déconnexion</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+      </View>
+      <View
+        style={
+          changeProfile
+            ? profileStyles.profileBoxForm
+            : profileStyles.profileBox
+        }
+      >
+        <View style={profileStyles.buttonList}>
+          <ScrollView>
+            {changeProfile ? (
+              <PseudoContext.Provider value={contextValue}>
+                <ProForm changeProfileStatus={setChangePro} />
+              </PseudoContext.Provider>
+            ) : (
+              <View>
+                <TouchableOpacity
+                  style={profileStyles.buttonProfile}
+                  onPress={() => navigation.navigate("FriendScan")}
+                >
+                  <Image
+                    source={{ uri: friends }}
+                    resizeMode="contain"
+                    style={{ width: 25, height: 25 }}
+                  />
+                  <Text style={profileStyles.buttonText}>Ajouter des amis</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={profileStyles.buttonProfile}
+                  onPress={() => navigation.navigate("FriendList")}
+                >
+                  <Image
+                    source={{ uri: friendlist }}
+                    resizeMode="contain"
+                    style={{ width: 25, height: 25 }}
+                  />
+                  <Text style={profileStyles.buttonText}>Liste des Amis</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={profileStyles.buttonProfile}
+                  onPress={() => {
+                    if (destroyToken()) {
+                      setAuth(false);
+                    }
+                  }}
+                >
+                  <Image
+                    source={{ uri: logout }}
+                    resizeMode="contain"
+                    style={{ width: 25, height: 25 }}
+                  />
+                  <Text style={profileStyles.buttonText}>Déconnexion</Text>
+                </TouchableOpacity>
+                {/*         <TouchableOpacity style={styles.button}>
           <Image
             source={{ uri: trash }}
             style={{ position: "absolute", width: 25, height: 25, left: 30 }}
           />
           <Text style={styles.H2alert}>Supprimer le compte</Text>
-        </TouchableOpacity>
-      </ScrollView>
+        </TouchableOpacity> */}
+              </View>
+            )}
+          </ScrollView>
+        </View>
+      </View>
     </View>
   );
 }
