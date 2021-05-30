@@ -1,27 +1,44 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
 import { getMyPosition } from "../api/geolocalisation";
 
 import styles from "../../assets/styles/styles";
-import { usermarker } from "../../assets/images.json";
+import { usermarker, friendmarker } from "../../assets/images.json";
 
 export default function Map() {
   const [pos, setPos] = React.useState("");
+  const [friendsPos, setFriendsPos] = React.useState([]);
 
   async function getPos() {
     setPos(await getMyPosition());
   }
+  async function getFriendsPos() {
+    setFriendsPos([
+      {
+        pseudo: "adrien",
+        coordonate: { latitude: 48.751729, location: 2.300368 },
+      },
+      {
+        pseudo: "slame",
+        coordonate: { latitude: 38.73, location: 68.73 },
+      },
+      {
+        pseudo: "paul",
+        coordonate: { latitude: 58.73, location: 38.73 },
+      },
+    ]);
+  }
 
   React.useEffect(() => {
     getPos();
+    getFriendsPos();
   }, []);
   console.log("::POS ->  ", pos);
 
   if (pos && pos != "") {
     const coordinate = JSON.parse(pos);
-    console.log(coordinate);
     return (
       <View style={styles.containerMap}>
         <MapView
@@ -35,12 +52,40 @@ export default function Map() {
         >
           <Marker
             title="Moi"
-            image={{ uri: usermarker }}
             coordinate={{
               latitude: coordinate.latitude,
               longitude: coordinate.location,
             }}
-          />
+            anchor={{ x: 0.5, y: 1 }}
+          >
+            <Image
+              source={{ uri: usermarker }}
+              style={{ width: 26, height: 28 }}
+              resizeMode="center"
+              resizeMethod="resize"
+            />
+          </Marker>
+          {friendsPos ? (
+            friendsPos.map((marker, index) => (
+              <Marker
+                key={index}
+                title={marker.pseudo}
+                coordinate={{
+                  latitude: marker.coordonate.latitude,
+                  longitude: marker.coordonate.location,
+                }}
+                anchor={{ x: 0.5, y: 1 }}
+              >
+                <Image
+                  source={{ uri: friendmarker }}
+                  style={{ width: 26, height: 28 }}
+                  resizeMode="contain"
+                />
+              </Marker>
+            ))
+          ) : (
+            <Text></Text>
+          )}
         </MapView>
       </View>
     );

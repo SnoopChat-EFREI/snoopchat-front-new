@@ -161,6 +161,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 20,
   },
+  pingMap: {
+    borderColor: "red",
+    borderRadius: 30,
+  },
 });
 
 export default styles;

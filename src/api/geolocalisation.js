@@ -19,9 +19,6 @@ export async function sendPosition(location) {
         },
       }
     );
-
-    console.log(response);
-
     return response.status;
   } catch (error) {
     console.log(error);
@@ -38,6 +35,10 @@ export async function getMyPosition() {
           Authorization: "Bearer " + token,
         },
       }
+    );
+    console.log(
+      "::// OUEEEEEEE-------------------------------------6> ",
+      response.data.data
     );
     const { coordonate } = response.data.data;
     return coordonate;

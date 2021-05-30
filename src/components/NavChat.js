@@ -22,7 +22,9 @@ export default function NavChat() {
         <TouchableOpacity onPress={() => navigation.navigate("Friends")}>
           <Image source={{ uri: friends }} style={styles.imageNav} />
         </TouchableOpacity>
-        <Image source={{ uri: write }} style={styles.imageNav} />
+        <TouchableOpacity onPress={() => navigation.navigate("NewChat")}>
+          <Image source={{ uri: write }} style={styles.imageNav} />
+        </TouchableOpacity>
       </View>
     </View>
   );
