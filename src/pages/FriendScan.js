@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button, Alert } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 
+import {addFriend} from "../api/authorisation"
+
 import Nav from "../components/Nav";
 
 export default function FriendScan() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [statut, setStatut] = useState();
 
   useEffect(() => {
     (async () => {
@@ -15,9 +18,14 @@ export default function FriendScan() {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    Alert.alert("Ami ajouté !", `Requête enoyé au snoopchater ${data} !`);
+  const handleBarCodeScanned = async ({ type, data }) => {
+    await setScanned(true);
+    await setStatut(await addFriend(data))
+    if(await statut === 201){
+      Alert.alert("Ami ajouté !", `Snoopchater "${data}" ajouté !`);
+    }else{
+      Alert.alert("Impossible", `Impossible d'ajouter le snoopchater "${data}" !`);
+    }
   };
 
   if (hasPermission === null) {

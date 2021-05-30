@@ -25,16 +25,13 @@ export async function registerUser(
   password
 ) {
   try {
-    const response = await axios.post(
-      `https://snoopchat.herokuapp.com/register`,
-      {
-        firstName,
-        lastName,
-        pseudo,
-        eMail,
-        password,
-      }
-    );
+    const response = await axios.post(`https://snoopchat.herokuapp.com/register`, {
+      firstName,
+      lastName,
+      pseudo,
+      eMail,
+      password,
+    });
     return response;
   } catch (error) {
     console.log(error);
@@ -56,6 +53,27 @@ export async function fetchOneUser() {
 
     const { userFind } = response.data.data;
     return userFind;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function addFriend(pseudo) {
+  try {
+    const token = await AsyncStorage.getItem("@token");
+
+    const response = await axios.get(
+      `https://snoopchat.herokuapp.com/api/friends/addfriend/${pseudo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+
+    const addFriendResponse  = response.status;
+    console.log(addFriendResponse);
+    return addFriendResponse;
   } catch (error) {
     console.log(error);
   }

@@ -21,25 +21,35 @@ import AuthContext from "../utils/connection.context";
 import { logo, friends, logout, trash } from "../../assets/images.json";
 import styles from "../../assets/styles/styles";
 
+import PseudoContext from "../utils/PseudoContext";
+
 export default function Profile() {
   const navigation = useNavigation();
+  const [pseudo, setPseudo] = React.useState("");
   const title = "Profile";
   const { setAuth } = useContext(AuthContext);
 
+  const contextValue = {
+    pseudo,
+    setPseudo,
+  };
+  console.log(pseudo);
   return (
     <View style={styles.container2}>
       <Nav title={title} />
       <QRCode
-        value="Guigui le bg"
+        value={pseudo ? pseudo : "loading..."}
         logo={{ uri: logo }}
         logoSize={20}
         logoBackgroundColor="#00B2FF"
       />
       <Text></Text>
-      <Text style={styles.H2}>GuiguiBoy</Text>
+      <Text style={styles.H2}>{pseudo}</Text>
       <Text></Text>
-      <ScrollView style={{ marginBottom: 60 }}>
-        <ProForm />
+      <ScrollView>
+        <PseudoContext.Provider value={contextValue}>
+          <ProForm />
+        </PseudoContext.Provider>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Friends")}
@@ -49,6 +59,13 @@ export default function Profile() {
             style={{ position: "absolute", width: 25, height: 25, left: 30 }}
           />
           <Text style={styles.H2}>Ajouter des amis</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("FriendList")}
+        >
+          {/* <Image source={{uri: users}} style={{ position: 'absolute', width: 25, height: 25, left : 30 }} /> */}
+          <Text style={styles.H2}>Liste des Amis</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}

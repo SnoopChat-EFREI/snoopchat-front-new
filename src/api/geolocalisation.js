@@ -19,6 +19,9 @@ export async function sendPosition(location) {
         },
       }
     );
+
+    // console.log(response);
+
     return response.status;
   } catch (error) {
     console.log(error);
