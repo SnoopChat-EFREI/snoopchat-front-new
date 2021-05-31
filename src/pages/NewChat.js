@@ -1,51 +1,48 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 //:: Component import
+import Nav from "../components/Nav";
+import { fetchOneUser } from "../api/authorisation";
+import initFriends from "../utils/initFriends";
 
 //:: utils import
-import { getToken, verifyToken } from "../utils/token.logic";
-import AuthContext from "../utils/connection.context";
-import TokenContext from "../utils/token.context";
 
 //:: Import CSS
 import styles from "../../assets/styles/styles";
-import { logo } from "../../assets/images.json";
 
 export default function NewChat() {
-  const { setAuth } = useContext(AuthContext);
-  const { setToken } = useContext(TokenContext);
+  const navigation = useNavigation();
+  const [friends, setFriends] = React.useState([]);
+  const [id, setId] = React.useState("");
+  const [pseudo, setPseudo] = React.useState("");
 
-  const fetchToken = async () => {
-    const token = await getToken();
-    if (token) {
-      console.log(await verifyToken(token));
-      if (await verifyToken(token)) {
-        setAuth(true);
-        setToken(token);
-      } else {
-        setAuth(false);
-        setToken(null);
-      }
-    }
-  };
-  useEffect(() => {
-    fetchToken();
+  async function getOneUser() {
+    await setFriends(initFriends(await fetchOneUser()));
+  }
+
+  React.useEffect(() => {
+    getOneUser();
   }, []);
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.H2}>Démarrer une discussion</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Pseudo"
-        onChangeText={() => {}}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de passe"
-        onChangeText={() => {}}
-      />
-    </View>
-  );
+    return (
+      <View style={styles.container}>
+        <Nav title={"Démarrer une discussion"} />
+        {friends.map((item, index) => (
+          <TouchableOpacity
+            style={styles.TO}
+            onPress={() => {
+              navigation.navigate('NewChatTo', {
+                itemId: item.id,
+                itemPseudo: item.pseudo,
+              });
+            }}
+          >
+            <Text style={styles.H2}>{item.pseudo}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+      
+    );
 }

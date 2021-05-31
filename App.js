@@ -13,6 +13,7 @@ import Profile from "./src/pages/Profile";
 import Friends from "./src/pages/Friends";
 import FriendScan from "./src/pages/FriendScan";
 import NewChat from "./src/pages/NewChat";
+import NewChatTo from "./src/pages/NewChatTo";
 import FriendList from "./src/pages/FriendList";
 
 //:: Context import
@@ -39,6 +40,7 @@ const container = () => {
       <Drawer.Screen name="Friends" component={Friends} />
       <Drawer.Screen name="FriendScan" component={FriendScan} />
       <Drawer.Screen name="NewChat" component={NewChat} />
+      <Drawer.Screen name="NewChatTo" component={NewChatTo} />
       <Drawer.Screen name="FriendList" component={FriendList} />
     </Drawer.Navigator>
   );

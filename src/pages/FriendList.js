@@ -8,6 +8,7 @@ import styles from "../../assets/styles/styles";
 import friendStyles from "../../assets/styles/friends";
 
 import { fetchOneUser } from "../api/authorisation";
+import initFriends from "../utils/initFriends"
 
 const FriendList = (props) => {
   const [friends, setFriends] = React.useState([]);
@@ -20,16 +21,7 @@ const FriendList = (props) => {
     getOneUser();
   }, []);
 
-  function initFriends(friendsNotInit) {
-    let userId = friendsNotInit.id;
-    let friendsArray = [];
-    friendsNotInit.friend.user.forEach((row) => {
-      if (userId !== row.id) {
-        friendsArray.push(row);
-      }
-    });
-    return friendsArray;
-  }
+
 
   return (
     <View style={styles.container}>

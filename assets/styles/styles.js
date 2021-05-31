@@ -142,6 +142,12 @@ const styles = StyleSheet.create({
     borderColor: "red",
     borderRadius: 30,
   },
+  TO: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 15,
+    padding: 30,
+    width: "90%"
+  }
 });
 
 export default styles;
