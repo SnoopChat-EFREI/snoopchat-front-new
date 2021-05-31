@@ -27,9 +27,12 @@ export default function Home() {
           <ScrollView>
             {chats.map((chat, index) => (
               <TouchableOpacity key={index} style={homeStyles.itemChat}>
-                <Text style={homeStyles.textItem}>
-                  {index + 1}. {chat.utilisateurs.pseudo}
-                </Text>
+                <View style={homeStyles.msgBox}>
+                  <Text style={homeStyles.nbItem}>{index + 1}</Text>
+                  <Text style={homeStyles.textItem}>
+                    {chat.utilisateurs.pseudo}
+                  </Text>
+                </View>
               </TouchableOpacity>
             ))}
           </ScrollView>
