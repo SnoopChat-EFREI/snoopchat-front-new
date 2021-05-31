@@ -28,7 +28,7 @@ export default function NewChatTo({ route }) {
           value={chat}
         />
         <TouchableOpacity style={styles.button} onPress={async ()=>{
-            connectMembersChat("BONJOUR")
+            connectMembersChat(itemId)
         }}>
             <Text style={styles.buttonText}>ENVOYER</Text>
         </TouchableOpacity>

@@ -6,7 +6,7 @@ export async function connectMembersChat(members) {
     const token = await AsyncStorage.getItem("@token");
 
     const response = await axios.post(
-      `https://snoopchat.herokuapp.com/api/chats`,
+      `http://localhost:8080/api/chats`,
       {
         members,
       },
@@ -28,7 +28,7 @@ export async function fetchOneChat() {
       const token = await AsyncStorage.getItem("@token");
   
       const response = await axios.get(
-        `https://snoopchat.herokuapp.com/api/chats/one`,
+        `http://localhost:8080/api/chats/one`,
         {
           headers: {
             Authorization: "Bearer " + token,

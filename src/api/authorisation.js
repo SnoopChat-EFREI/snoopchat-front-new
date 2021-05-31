@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export async function login(username, password, bool) {
   try {
-    const response = await axios.post(`https://snoopchat.herokuapp.com/login`, {
+    const response = await axios.post(`http://localhost:8080/login`, {
       username,
       password,
     });
@@ -25,7 +25,7 @@ export async function registerUser(
   password
 ) {
   try {
-    const response = await axios.post(`https://snoopchat.herokuapp.com/register`, {
+    const response = await axios.post(`http://localhost:8080/register`, {
       firstName,
       lastName,
       pseudo,
@@ -43,7 +43,7 @@ export async function fetchOneUser() {
     const token = await AsyncStorage.getItem("@token");
 
     const response = await axios.get(
-      `https://snoopchat.herokuapp.com/api/users/one`,
+      `http://localhost:8080/api/users/one`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -63,7 +63,7 @@ export async function addFriend(pseudo) {
     const token = await AsyncStorage.getItem("@token");
 
     const response = await axios.get(
-      `https://snoopchat.herokuapp.com/api/friends/addfriend/${pseudo}`,
+      `http://localhost:8080/api/friends/addfriend/${pseudo}`,
       {
         headers: {
           Authorization: "Bearer " + token,
