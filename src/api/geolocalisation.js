@@ -20,8 +20,6 @@ export async function sendPosition(location) {
       }
     );
 
-    // console.log(response);
-
     return response.status;
   } catch (error) {
     console.log(error);
@@ -39,12 +37,28 @@ export async function getMyPosition() {
         },
       }
     );
-    console.log(
-      "::// OUEEEEEEE-------------------------------------6> ",
-      response.data.data
+    const friendList = await getFriendsLoc();
+    const { data } = response.data;
+    const payload = { friendList, data };
+
+    return payload;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function getFriendsLoc() {
+  try {
+    const token = await getToken();
+    const response = await axios.get(
+      `https://snoopchat.herokuapp.com/api/users/one/`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
     );
-    const { coordonate } = response.data.data;
-    return coordonate;
+    return response.data.data.userFind.friend.user;
   } catch (error) {
     console.log(error);
   }

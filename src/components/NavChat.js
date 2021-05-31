@@ -19,7 +19,7 @@ export default function NavChat() {
       </View>
       <Text style={styles.H2}>Home</Text>
       <View style={styles.nav2}>
-        <TouchableOpacity onPress={() => navigation.navigate("Friends")}>
+        <TouchableOpacity onPress={() => navigation.navigate("FriendScan")}>
           <Image source={{ uri: friends }} style={styles.imageNav} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("NewChat")}>
