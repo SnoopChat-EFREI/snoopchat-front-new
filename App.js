@@ -15,6 +15,7 @@ import FriendScan from "./src/pages/FriendScan";
 import NewChat from "./src/pages/NewChat";
 import NewChatTo from "./src/pages/NewChatTo";
 import FriendList from "./src/pages/FriendList";
+import Messages from "./src/pages/Messsages"
 
 //:: Context import
 import AuthContext from "./src/utils/connection.context";
@@ -42,6 +43,7 @@ const container = () => {
       <Drawer.Screen name="NewChat" component={NewChat} />
       <Drawer.Screen name="NewChatTo" component={NewChatTo} />
       <Drawer.Screen name="FriendList" component={FriendList} />
+      <Drawer.Screen name="Messages" component={Messages} />
     </Drawer.Navigator>
   );
 };
