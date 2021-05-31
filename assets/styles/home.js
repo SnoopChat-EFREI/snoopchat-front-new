@@ -26,7 +26,21 @@ const styles = StyleSheet.create({
     height: "90%",
   },
   textItem: {
-    textAlign: "center",
+    textAlign: "left",
+    fontSize: 17,
+    paddingHorizontal: 20,
+  },
+  nbItem: {
+    marginLeft: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    backgroundColor: "#1acaff",
+    borderRadius: 400,
+    color: "white",
+  },
+  msgBox: {
+    display: "flex",
+    flexDirection: "row",
   },
 });
 
