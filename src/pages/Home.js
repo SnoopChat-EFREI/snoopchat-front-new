@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     getOneChat();
   }, []);
-  console.log(chats);
+
   return (
     <View style={styles.homeContainer}>
       <NavBar />
@@ -28,13 +28,16 @@ export default function Home() {
         <View style={homeStyles.box}>
           <ScrollView>
             {chats.map((chat, index) => (
-              <TouchableOpacity key={index} style={homeStyles.itemChat}
-              onPress={() => {
-                navigation.navigate('Messages', {
-                  chatId: chat.id,
-                  chatPseudo: chat.utilisateurs.pseudo
-                });
-              }}>
+              <TouchableOpacity
+                key={index}
+                style={homeStyles.itemChat}
+                onPress={() => {
+                  navigation.navigate("Messages", {
+                    chatId: chat.id,
+                    chatPseudo: chat.utilisateurs.pseudo,
+                  });
+                }}
+              >
                 <View style={homeStyles.msgBox}>
                   <Text style={homeStyles.nbItem}>{index + 1}</Text>
                   <Text style={homeStyles.textItem}>
