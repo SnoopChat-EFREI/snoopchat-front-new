@@ -9,7 +9,7 @@ export async function sendPosition(location) {
   try {
     const token = await getToken();
     const response = await axios.put(
-      `http://localhost:8080/api/geolocalisations/`,
+      `https://snoopchat.herokuapp.com/api/geolocalisations/`,
       {
         coordonate: location,
       },
@@ -30,7 +30,7 @@ export async function getMyPosition() {
   try {
     const token = await getToken();
     const response = await axios.get(
-      `http://localhost:8080/api/geolocalisations/`,
+      `https://snoopchat.herokuapp.com/api/geolocalisations/`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -51,7 +51,7 @@ async function getFriendsLoc() {
   try {
     const token = await getToken();
     const response = await axios.get(
-      `http://localhost:8080/api/users/one/`,
+      `https://snoopchat.herokuapp.com/api/users/one/`,
       {
         headers: {
           Authorization: "Bearer " + token,
