@@ -26,23 +26,23 @@ export default function NewChat() {
     getOneUser();
   }, []);
 
-    return (
-      <View style={styles.container}>
-        <Nav title={"Démarrer une discussion"} />
-        {friends.map((item, index) => (
-          <TouchableOpacity
-            style={styles.TO}
-            onPress={() => {
-              navigation.navigate('NewChatTo', {
-                itemId: item.id,
-                itemPseudo: item.pseudo,
-              });
-            }}
-          >
-            <Text style={styles.H2}>{item.pseudo}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-      
-    );
+  return (
+    <View style={styles.container}>
+      <Nav title={"Démarrer une discussion"} />
+      {friends.map((item, index) => (
+        <TouchableOpacity
+          key={index}
+          style={styles.TO}
+          onPress={() => {
+            navigation.navigate("NewChatTo", {
+              itemId: item.id,
+              itemPseudo: item.pseudo,
+            });
+          }}
+        >
+          <Text style={styles.H2}>{item.pseudo}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
 }

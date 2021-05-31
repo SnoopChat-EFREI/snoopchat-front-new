@@ -15,7 +15,7 @@ export function geolocalisation() {
       latitude: location.coords.latitude,
       location: location.coords.longitude,
     };
-
+    console.log("Coucou cest la géoloc qui s'actu :p ");
     sendPosition(JSON.stringify(msg));
   }, 30000);
 }

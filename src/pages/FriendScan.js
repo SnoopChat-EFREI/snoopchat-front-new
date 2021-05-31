@@ -29,6 +29,7 @@ export default function FriendScan() {
 
   const handleBarCodeScanned = async ({ type, data }) => {
     await setScanned(true);
+    console.log(data);
     await setStatut(await addFriend(data));
     if ((await statut) === 201) {
       Alert.alert("Ami ajouté !", `Snoopchater "${data}" ajouté !`);

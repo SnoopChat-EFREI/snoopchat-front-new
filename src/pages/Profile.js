@@ -1,5 +1,12 @@
-import React, { useContext } from "react";
-import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
+import React, { useContext, useEffect } from "react";
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import QRCode from "react-native-qrcode-svg";
 
@@ -10,6 +17,7 @@ import ProForm from "../components/ProForm";
 //:: utils imports
 import { destroyToken } from "../utils/token.logic";
 import AuthContext from "../utils/connection.context";
+import { fetchOneUser } from "../api/authorisation";
 
 //:: CSS imports
 import {
@@ -35,17 +43,31 @@ export default function Profile() {
     pseudo,
     setPseudo,
   };
+  async function getOneUser() {
+    const userData = await await fetchOneUser();
+    setPseudo(userData.pseudo);
+  }
+  useEffect(() => {
+    getOneUser();
+  }, []);
+  console.log(pseudo);
   return (
     <View style={profileStyles.profileContainer}>
       <Nav title={title} />
       <View style={profileStyles.profileBox}>
-        <QRCode
-          value={pseudo ? pseudo : "loading..."}
-          logo={{ uri: logo }}
-          logoSize={20}
-          logoBackgroundColor="#00B2FF"
-        />
-        <Text style={styles.H2}>{pseudo}</Text>
+        {pseudo ? (
+          <View>
+            <QRCode
+              value={pseudo ? pseudo : "loading..."}
+              logo={{ uri: logo }}
+              logoSize={20}
+              logoBackgroundColor="#00B2FF"
+            />
+            <Text style={styles.H2}>{pseudo}</Text>
+          </View>
+        ) : (
+          <ActivityIndicator size="large" color="red"></ActivityIndicator>
+        )}
       </View>
       <View>
         <TouchableOpacity

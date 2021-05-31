@@ -31,6 +31,7 @@ export default function NewChatTo({ route }) {
           style={styles.button}
           onPress={async () => {
             connectMembersChat(itemId);
+            navigation.navigate("Chat");
           }}
         >
           <Text style={styles.buttonText}>ENVOYER</Text>

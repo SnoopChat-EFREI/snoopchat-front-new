@@ -17,7 +17,7 @@ export async function getToken() {
 
 export async function verifyToken(token) {
   try {
-    await axios.get("https://snoopchat.herokuapp.com/api/users/verify-token", {
+    await axios.get(" http://fef7ae758a40.ngrok.io/api/users/verify-token", {
       headers: {
         Authorization: "Bearer " + token,
       },
