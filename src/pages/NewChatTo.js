@@ -1,12 +1,12 @@
 import React from "react";
-import { Text, View, Image, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 //:: Component import
 import Nav from "../components/Nav";
 
 //:: utils import
-import {connectMembersChat} from "../api/Chat"
+import { connectMembersChat } from "../api/Chat";
 //:: Import CSS
 import styles from "../../assets/styles/styles";
 import NavChat from "../components/NavChat";
@@ -27,10 +27,13 @@ export default function NewChatTo({ route }) {
           onChangeText={(value) => setChat(value)}
           value={chat}
         />
-        <TouchableOpacity style={styles.button} onPress={async ()=>{
-            connectMembersChat(itemId)
-        }}>
-            <Text style={styles.buttonText}>ENVOYER</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={async () => {
+            connectMembersChat(itemId);
+          }}
+        >
+          <Text style={styles.buttonText}>ENVOYER</Text>
         </TouchableOpacity>
       </View>
     );
