@@ -12,7 +12,7 @@ export async function connectMembersChat(members) {
       }
     }
     const response = await axios.post(
-      ` http://fef7ae758a40.ngrok.io/api/chats`,
+      ` http://dd21fdce1e14.ngrok.io/api/chats`,
       {
         members,
       },
@@ -32,7 +32,7 @@ export async function fetchOneChat() {
   try {
     const token = await AsyncStorage.getItem("@token");
     const response = await axios.get(
-      ` http://fef7ae758a40.ngrok.io/api/chats/one`,
+      ` http://dd21fdce1e14.ngrok.io/api/chats/one`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -50,7 +50,7 @@ export async function getMessages(id) {
   try {
     const token = await AsyncStorage.getItem("@token");
     const response = await axios.get(
-      ` http://fef7ae758a40.ngrok.io/api/messages/${id}`,
+      ` http://dd21fdce1e14.ngrok.io/api/messages/${id}`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -68,7 +68,7 @@ export async function sendMessages(id, body) {
   try {
     const token = await AsyncStorage.getItem("@token");
     const response = await axios.post(
-      ` http://fef7ae758a40.ngrok.io/api/messages/`,
+      ` http://dd21fdce1e14.ngrok.io/api/messages/`,
       {
         chatId: id,
         body,

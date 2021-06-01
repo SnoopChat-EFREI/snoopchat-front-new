@@ -9,7 +9,7 @@ export async function sendPosition(location) {
   try {
     const token = await getToken();
     const response = await axios.put(
-      ` http://fef7ae758a40.ngrok.io/api/geolocalisations/`,
+      ` http://dd21fdce1e14.ngrok.io/api/geolocalisations/`,
       {
         coordonate: location,
       },
@@ -30,7 +30,7 @@ export async function getMyPosition() {
   try {
     const token = await getToken();
     const response = await axios.get(
-      ` http://fef7ae758a40.ngrok.io/api/geolocalisations/`,
+      ` http://dd21fdce1e14.ngrok.io/api/geolocalisations/`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -51,7 +51,7 @@ async function getFriendsLoc() {
   try {
     const token = await getToken();
     const response = await axios.get(
-      ` http://fef7ae758a40.ngrok.io/api/users/one/`,
+      ` http://dd21fdce1e14.ngrok.io/api/users/one/`,
       {
         headers: {
           Authorization: "Bearer " + token,

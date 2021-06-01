@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export async function login(username, password, bool) {
   try {
-    const response = await axios.post(` http://fef7ae758a40.ngrok.io/login`, {
+    const response = await axios.post(` http://dd21fdce1e14.ngrok.io/login`, {
       username,
       password,
     });
@@ -26,7 +26,7 @@ export async function registerUser(
 ) {
   try {
     const response = await axios.post(
-      ` http://fef7ae758a40.ngrok.io/register`,
+      ` http://dd21fdce1e14.ngrok.io/register`,
       {
         firstName,
         lastName,
@@ -46,7 +46,7 @@ export async function fetchOneUser() {
     const token = await AsyncStorage.getItem("@token");
 
     const response = await axios.get(
-      ` http://fef7ae758a40.ngrok.io/api/users/one`,
+      ` http://dd21fdce1e14.ngrok.io/api/users/one`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -55,7 +55,7 @@ export async function fetchOneUser() {
     );
 
     const { userFind } = response.data.data;
-    console.log("MON Vié ", userFind);
+    // console.log("MON Vié ", userFind);
     return userFind;
   } catch (error) {
     console.log(error);
@@ -67,7 +67,7 @@ export async function addFriend(pseudo) {
     const token = await AsyncStorage.getItem("@token");
     console.log(pseudo);
     const response = await axios.get(
-      ` http://fef7ae758a40.ngrok.io/api/friends/addfriend/${pseudo}`,
+      ` http://dd21fdce1e14.ngrok.io/api/friends/addfriend/${pseudo}`,
       {
         headers: {
           Authorization: "Bearer " + token,
