@@ -22,4 +22,4 @@ SnoopChat's Front-end
 `src/utils` -> little functions used in the components/pages 
 
 
-There is no .env variable for the back API. Change it easily with a search & replace in the `src` folder.
+There is no .env variable for the API URL. Change it easily with a search & replace in the `src` folder.
