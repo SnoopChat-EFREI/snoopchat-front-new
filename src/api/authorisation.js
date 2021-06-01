@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export async function login(username, password, bool) {
   try {
-    const response = await axios.post(` http://dd21fdce1e14.ngrok.io/login`, {
+    const response = await axios.post(`https://snoopchat.herokuapp.com/login`, {
       username,
       password,
     });

@@ -9,17 +9,22 @@ import homeStyles from "../../assets/styles/home";
 
 import { fetchOneChat } from "../api/Chat";
 
-export default function Home() {
+export default function Home({ route }) {
   const navigation = useNavigation();
   const [chats, setChats] = useState(null);
 
   async function getOneChat() {
     setChats(await fetchOneChat());
   }
-
   useEffect(() => {
     getOneChat();
-  }, []);
+    if (route.params) {
+      if (route.params.new) {
+        getOneChat();
+        console.log(route.params);
+      }
+    }
+  }, [route.params]);
 
   return (
     <View style={styles.homeContainer}>

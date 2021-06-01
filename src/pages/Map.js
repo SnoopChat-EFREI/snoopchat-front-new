@@ -16,21 +16,21 @@ export default function Map() {
     setPos(JSON.parse(payload.data.coordonate));
     if (payload.friendList) {
       const friendCoordinate = [];
-      for (let i = 0; i < payload.friendList.length; i++) {
-        const coordIt = JSON.parse(
-          payload.friendList[i].geolocalisation.coordonate
+      for (let i = 0; i < payload.friendList.length - 1; i++) {
+        /*const coordIt = JSON.parse(
+          payload.friendList[0].user[i].geolocalisation.coordonate
         );
         if (
-          pos.latitude !== coordIt.latitude &&
+          pos.latitude !== coordIt.latitude ||
           pos.location !== coordIt.location
         ) {
-          friendCoordinate.push({
-            pseudo: payload.friendList[i].pseudo,
-            coordinate: JSON.parse(
-              payload.friendList[i].geolocalisation.coordonate
-            ),
-          });
-        }
+        } */
+        friendCoordinate.push({
+          pseudo: payload.friendList[0].user[i].pseudo,
+          coordinate: JSON.parse(
+            payload.friendList[0].user[i].geolocalisation.coordonate
+          ),
+        });
       }
       setFriendsPos(friendCoordinate);
     }
