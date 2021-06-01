@@ -3,10 +3,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export async function login(username, password, bool) {
   try {
-    const response = await axios.post(` http://fef7ae758a40.ngrok.io/login`, {
-      username,
-      password,
-    });
+    const response = await axios.post(
+      ` https://snoopchat.herokuapp.com/login`,
+      {
+        username,
+        password,
+      }
+    );
     console.log(response);
     const { token } = response.data;
     await AsyncStorage.setItem("@token", token);
@@ -26,7 +29,7 @@ export async function registerUser(
 ) {
   try {
     const response = await axios.post(
-      ` http://fef7ae758a40.ngrok.io/register`,
+      ` https://snoopchat.herokuapp.com/register`,
       {
         firstName,
         lastName,
@@ -38,6 +41,7 @@ export async function registerUser(
     return response;
   } catch (error) {
     console.log(error);
+    return false;
   }
 }
 
@@ -46,7 +50,7 @@ export async function fetchOneUser() {
     const token = await AsyncStorage.getItem("@token");
 
     const response = await axios.get(
-      ` http://fef7ae758a40.ngrok.io/api/users/one`,
+      ` https://snoopchat.herokuapp.com/api/users/one`,
       {
         headers: {
           Authorization: "Bearer " + token,
@@ -67,7 +71,7 @@ export async function addFriend(pseudo) {
     const token = await AsyncStorage.getItem("@token");
     console.log(pseudo);
     const response = await axios.get(
-      ` http://fef7ae758a40.ngrok.io/api/friends/addfriend/${pseudo}`,
+      ` https://snoopchat.herokuapp.com/api/friends/addfriend/${pseudo}`,
       {
         headers: {
           Authorization: "Bearer " + token,
