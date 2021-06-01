@@ -3,13 +3,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export async function login(username, password, bool) {
   try {
-    const response = await axios.post(
-      ` https://snoopchat.herokuapp.com/login`,
-      {
-        username,
-        password,
-      }
-    );
+    const response = await axios.post(` http://dd21fdce1e14.ngrok.io/login`, {
+      username,
+      password,
+    });
     console.log(response);
     const { token } = response.data;
     await AsyncStorage.setItem("@token", token);
@@ -59,7 +56,7 @@ export async function fetchOneUser() {
     );
 
     const { userFind } = response.data.data;
-    console.log("MON Vié ", userFind);
+    // console.log("MON Vié ", userFind);
     return userFind;
   } catch (error) {
     console.log(error);

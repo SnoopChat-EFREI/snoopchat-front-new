@@ -1,10 +1,13 @@
 export default function initFriends(friendsNotInit) {
   let userId = friendsNotInit.id;
   let friendsArray = [];
-  friendsNotInit.friend.user.forEach((row) => {
-    if (userId !== row.id) {
-      friendsArray.push(row);
-    }
+
+  friendsNotInit.friends.forEach((row) => {
+    row.user.forEach((row1) => {
+      if (userId !== row1.id) {
+        friendsArray.push(row1);
+      }
+    });
   });
   return friendsArray;
 }
